@@ -1,7 +1,6 @@
 from flask import Blueprint, jsonify, request
 from firebase_admin import firestore
 from routes.auth import require_auth
-from database import get_db
 
 user_bp = Blueprint('user', __name__)
 
@@ -13,7 +12,7 @@ def get_user_profile():
         if not uid:
             return jsonify({'success': False, 'error': 'Unauthorized'}), 401
             
-        db = get_db()
+        db = firestore.client()
         user_ref = db.collection('users').document(uid)
         user_doc = user_ref.get()
         
