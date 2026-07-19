@@ -1,0 +1,337 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #00C6FF;
+  --color-secondary: #0072FF;
+  --color-background: #F8FAFC;
+  --color-surface: #FFFFFF;
+  --color-text: #0F172A;
+  --color-text-muted: #64748B;
+  --color-success: #10B981;
+  --color-accent: #0072FF;
+  
+  --font-sans: 'Inter', sans-serif;
+  --spacing-2: 8px;
+  --spacing-4: 16px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Global Interactive Cursor ─────────────────────────────────────────────── */
+button,
+[role="button"],
+a,
+select,
+label[for],
+[tabindex="0"],
+.cursor-pointer {
+  cursor: pointer;
+}
+
+button:disabled,
+[disabled] {
+  cursor: not-allowed;
+}
+
+/* Dynamic Live Preview Themes */
+[data-theme="aurora"] {
+  --theme-bg: #0f172a;
+  --theme-text: #f0f9ff;
+  --theme-primary: #22d3ee;
+  --theme-secondary: #38bdf8;
+  --theme-card: rgba(30, 41, 59, 0.9);
+  --theme-muted: #94a3b8;
+  --theme-border: rgba(255,255,255,0.1);
+}
+
+[data-theme="midnight_vc"] {
+  --theme-bg: #09090b;
+  --theme-text: #fafafa;
+  --theme-primary: #a78bfa;
+  --theme-secondary: #7c3aed;
+  --theme-card: rgba(39, 39, 42, 0.95);
+  --theme-muted: #a1a1aa;
+  --theme-border: rgba(167,139,250,0.15);
+}
+
+[data-theme="silicon_sage"] {
+  --theme-bg: #f9fafb;
+  --theme-text: #111827;
+  --theme-primary: #10b981;
+  --theme-secondary: #059669;
+  --theme-card: #ffffff;
+  --theme-muted: #6b7280;
+  --theme-border: rgba(0,0,0,0.08);
+}
+
+[data-theme="obsidian_gold"] {
+  --theme-bg: #0c0a09;
+  --theme-text: #fef3c7;
+  --theme-primary: #f59e0b;
+  --theme-secondary: #d97706;
+  --theme-card: rgba(28, 25, 23, 0.95);
+  --theme-muted: #a8a29e;
+  --theme-border: rgba(245,158,11,0.15);
+}
+
+[data-theme="arctic_light"] {
+  --theme-bg: #ffffff;
+  --theme-text: #1e293b;
+  --theme-primary: #3b82f6;
+  --theme-secondary: #2563eb;
+  --theme-card: #f8fafc;
+  --theme-muted: #64748b;
+  --theme-border: rgba(0,0,0,0.08);
+}
+
+[data-theme="rose_quartz"] {
+  --theme-bg: #fff1f2;
+  --theme-text: #1c1917;
+  --theme-primary: #f43f5e;
+  --theme-secondary: #e11d48;
+  --theme-card: #ffffff;
+  --theme-muted: #9f1239;
+  --theme-border: rgba(244,63,94,0.12);
+}
+
+[data-theme="deep_ocean"] {
+  --theme-bg: #0c1428;
+  --theme-text: #e2e8f0;
+  --theme-primary: #06b6d4;
+  --theme-secondary: #0891b2;
+  --theme-card: rgba(15, 28, 60, 0.9);
+  --theme-muted: #94a3b8;
+  --theme-border: rgba(6,182,212,0.15);
+}
+
+[data-theme="forest_venture"] {
+  --theme-bg: #0a1a0e;
+  --theme-text: #f0fdf4;
+  --theme-primary: #84cc16;
+  --theme-secondary: #65a30d;
+  --theme-card: rgba(20, 45, 20, 0.9);
+  --theme-muted: #86efac;
+  --theme-border: rgba(132,204,22,0.15);
+}
+
+[data-theme="crimson_empire"] {
+  --theme-bg: #1a0505;
+  --theme-text: #fef2f2;
+  --theme-primary: #ef4444;
+  --theme-secondary: #dc2626;
+  --theme-card: rgba(45, 10, 10, 0.95);
+  --theme-muted: #fca5a5;
+  --theme-border: rgba(239,68,68,0.15);
+}
+
+[data-theme="corporate_slate"] {
+  --theme-bg: #0f172a;
+  --theme-text: #e2e8f0;
+  --theme-primary: #6366f1;
+  --theme-secondary: #4f46e5;
+  --theme-card: rgba(30, 41, 59, 0.95);
+  --theme-muted: #94a3b8;
+  --theme-border: rgba(99,102,241,0.15);
+}
+
+@layer utilities {
+  .animate-liquid-title {
+    background-size: 200% auto;
+    animation: liquid 4s linear infinite;
+  }
+  
+  .ocean-aurora-bg {
+    background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 50%, #f0f9ff 100%);
+    position: relative;
+  }
+  
+  .ocean-aurora-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.05), transparent 60%);
+    pointer-events: none;
+  }
+
+  .slide-container {
+    content-visibility: auto;
+    contain-intrinsic-size: 1000px;
+  }
+}
+
+.watermark-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  opacity: 0.03;
+  overflow: hidden;
+}
+
+.watermark-text {
+  font-size: 180px;
+  font-weight: 900;
+  color: black;
+  transform: rotate(-30deg);
+  white-space: nowrap;
+  user-select: none;
+}
+
+@keyframes morph {
+  0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  50% { border-radius: 30% 70% 70% 30% / 30% 60% 40% 70%; }
+  100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+}
+
+@keyframes move-forever {
+  0% { transform: translate3d(-90px, 0, 0); }
+  100% { transform: translate3d(85px, 0, 0); }
+}
+
+.animate-wave-slow { animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite; }
+.animate-wave-medium { animation: move-forever 20s cubic-bezier(.55,.5,.45,.5) infinite; }
+.animate-wave-fast { animation: move-forever 15s cubic-bezier(.55,.5,.45,.5) infinite; }
+.animate-wave-slowest { animation: move-forever 30s cubic-bezier(.55,.5,.45,.5) infinite; }
+
+/* The new water drop animation */
+@keyframes drop-into-ocean {
+  0% {
+    transform: translateY(0) scale(1);
+    border-radius: 1.5rem;
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+  15% {
+    /* Shrink into a ball */
+    transform: translateY(-10px) scale(0.4); 
+    border-radius: 50%;
+    background-color: #00C6FF;
+    border-color: transparent;
+    box-shadow: 0 10px 20px rgba(0,198,255,0.4);
+  }
+  30% {
+    /* Pause and wobble slightly */
+    transform: translateY(-5px) scale(0.4);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    background-color: #00C6FF;
+  }
+  100% {
+    /* Plunge down into the ocean */
+    transform: translateY(800px) scale(0.2) scaleY(1.5);
+    border-radius: 50% 50% 50% 50% / 70% 70% 30% 30%;
+    background-color: #0072FF;
+    opacity: 0;
+  }
+}
+
+.animate-water-drop {
+  animation: drop-into-ocean 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  pointer-events: none;
+  z-index: 50;
+}
+
+.animate-water-drop .inner-content {
+  animation: fade-out-fast 0.1s forwards;
+}
+
+@keyframes fade-out-fast {
+  to { opacity: 0; }
+}
+
+/* Small droplets breaking off */
+@keyframes mini-drop {
+  0% { transform: translateY(0) scale(1); opacity: 0; }
+  10% { opacity: 1; transform: translateY(-20px) scale(1); }
+  100% { transform: translateY(600px) scale(0.3) scaleY(1.5); opacity: 0; }
+}
+
+.animate-water-drop .drop-1 { animation: mini-drop 1.2s ease-in forwards 0.2s; }
+.animate-water-drop .drop-2 { animation: mini-drop 1.4s ease-in forwards 0.1s; }
+.animate-water-drop .drop-3 { animation: mini-drop 1.1s ease-in forwards 0.3s; }
+
+/* --- Custom Oceanic Liquid Scrollbar --- */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 198, 255, 0.05); 
+  border-radius: 10px;
+  margin: 4px 0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, rgba(0, 198, 255, 0.8), rgba(0, 114, 255, 0.8));
+  border-radius: 100px;
+  border: 2px solid rgba(255, 255, 255, 0.3); /* Gives a glass-like edge */
+  background-clip: padding-box;
+  box-shadow: inset 2px 2px 5px rgba(255,255,255,0.5); /* Water reflection */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, rgba(0, 114, 255, 0.9), rgba(0, 198, 255, 0.9));
+}
+
+/* --- Lock Button 'Beckon' Animation --- */
+@keyframes beckon {
+  0%, 100% { 
+    transform: scale(1); 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+  }
+  50% { 
+    transform: scale(1.05); 
+    box-shadow: 0 10px 25px rgba(0, 198, 255, 0.6); 
+  }
+}
+
+.animate-beckon { 
+  animation: beckon 2.5s ease-in-out infinite; 
+}
+
+/* --- Liquid Flow Title Animation --- */
+@keyframes liquid-wash {
+  0%, 100% { 
+    background-position: 0% 50%; 
+    opacity: 1; 
+    filter: blur(0px); 
+    transform: translateX(0); 
+  }
+  50% { 
+    background-position: 100% 50%; 
+    opacity: 0.2; 
+    filter: blur(8px); 
+    transform: translateX(15px); 
+  }
+}
+
+.animate-liquid-title {
+  background: linear-gradient(90deg, #00C6FF, #0072FF, #00C6FF);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: liquid-wash 5s ease-in-out infinite;
+}
+
+/* --- Card Shimmer Animation --- */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}

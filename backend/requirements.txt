@@ -1,0 +1,64 @@
+# =============================================================
+#  Ikkish Prep — Python Backend Dependencies
+#  File: backend/requirements.txt
+#  Usage: pip install -r backend/requirements.txt
+# =============================================================
+
+# ── Web Framework ──────────────────────────────────────────
+flask
+flask-cors
+Flask-Limiter
+
+# ── Production WSGI/ASGI Server (GCP Cloud Run) ────────────
+gunicorn
+uvicorn[standard]          # needed for MCP SSE server
+
+# ── Firebase Admin SDK (Firestore, Auth) ───────────────────
+firebase-admin
+
+# ── Google AI & Agent Builder ─────────────────────────────
+google-genai
+google-generativeai
+google-cloud-aiplatform
+google-cloud-dialogflow-cx  # Agent Builder / Dialogflow CX gateway
+
+# ── Environment Variables ──────────────────────────────────
+python-dotenv
+
+# ── HTTP & Web Scraping (news/blog fetching) ───────────────
+requests
+beautifulsoup4
+lxml
+feedparser
+markdownify
+
+# ── GitHub Integration ─────────────────────────────────────
+PyGithub
+
+# ── Database ───────────────────────────────────────────────
+pymongo                    # MongoDB (student data, PYQs)
+dnspython                  # MongoDB SRV DNS resolution
+sqlalchemy                 # ORM for PostgreSQL/SQLite (agent logs, drafts, tickets)
+
+# ── Task Scheduling (news auto-fetch) ─────────────────────
+apscheduler
+
+# ── Payments ──────────────────────────────────────────────
+razorpay
+
+# ── PDF Processing ────────────────────────────────────────
+pdfplumber
+
+# ── LangChain (AI pipeline) ───────────────────────────────
+langchain-google-genai
+
+# ── AI Company — MCP Server (Agent Builder integration) ────
+mcp[cli]                   # MCP SDK (FastMCP + SSE server)
+a2wsgi                     # WSGI↔ASGI bridge (Flask + Starlette MCP mount)
+
+# ── Agentic Framework ─────────────────────────────────────
+pydantic
+
+# ── PitchKing Specific ────────────────────────────────────
+playwright                 # PDF rendering engine
+python-pptx                # PowerPoint export

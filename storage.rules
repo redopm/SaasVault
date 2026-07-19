@@ -1,0 +1,14 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Only backend Signed URLs can access these products
+    match /saas_market_products/{allPaths=**} {
+      allow read, write: if false; 
+    }
+    
+    // Default fallback
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

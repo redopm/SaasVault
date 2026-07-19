@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /print/
+Disallow: /generator/
+
+Sitemap: https://tools.ikkish.in/sitemap.xml

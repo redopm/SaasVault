@@ -1,0 +1,15 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Only users can read their own purchases. Only backend can write.
+    match /saas_vault_purchases/{purchaseId} {
+      allow read: if request.auth != null && request.auth.uid == resource.data.uid;
+      allow write: if false; // Only backend admin SDK can write
+    }
+    
+    // Default fallback for other collections
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
