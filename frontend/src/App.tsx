@@ -10,6 +10,7 @@ import VaultHome from './pages/VaultHome';
 import MarketHome from './pages/market/MarketHome';
 import ProductDetail from './pages/market/ProductDetail';
 import PromptVault from './pages/tool/PromptVault';
+import UserProfile from './pages/UserProfile';
 import Terms from './pages/legal/Terms';
 import Privacy from './pages/legal/Privacy';
 import Refund from './pages/legal/Refund';
@@ -146,6 +147,7 @@ function App() {
               <Route path="/terms" element={<Terms />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/refund" element={<Refund />} />
+              <Route path="/profile" element={<UserProfile />} />
               <Route path="/vault" element={<VaultHome />} />
               <Route path="/prompt-vault" element={<PromptVault />} />
               <Route path="/market" element={<MarketHome />} />

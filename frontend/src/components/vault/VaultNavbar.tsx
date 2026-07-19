@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { LogIn, UserCircle, LogOut, Coins } from 'lucide-react';
+import { LogIn, UserCircle, LogOut, Coins, LayoutDashboard } from 'lucide-react';
 import { auth, logout, db } from '../../firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { doc, onSnapshot } from 'firebase/firestore';
@@ -102,6 +102,15 @@ export default function VaultNavbar() {
                 )}
                 <span className="hidden md:inline-block">{user.displayName || user.email?.split('@')[0]}</span>
               </div>
+              
+              <button 
+                onClick={() => window.location.href = '/profile'}
+                className="text-slate-400 hover:text-indigo-400 transition-colors"
+                title="Dashboard"
+              >
+                <LayoutDashboard size={18} />
+              </button>
+
               <button 
                 onClick={handleLogout}
                 className="text-slate-400 hover:text-rose-400 transition-colors"
