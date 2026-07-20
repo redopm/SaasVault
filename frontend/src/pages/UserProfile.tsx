@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Package, Download, CreditCard, Clock, CheckCircle2, User as UserIcon, XCircle } from 'lucide-react';
-import { useAuth } from '../firebase';
+import { auth } from '../firebase';
+import { onAuthStateChanged } from 'firebase/auth';
 import VaultNavbar from '../components/vault/VaultNavbar';
 
 const apiUrl = import.meta.env.PROD ? '' : 'http://localhost:10001';
@@ -22,11 +23,20 @@ interface Purchase {
 }
 
 export default function UserProfile() {
-  const { user, loading: authLoading } = useAuth();
+  const [user, setUser] = useState<any>(null);
+  const [authLoading, setAuthLoading] = useState(true);
   const [profileData, setProfileData] = useState<UserProfileData | null>(null);
   const [purchases, setPurchases] = useState<Purchase[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setAuthLoading(false);
+    });
+    return () => unsubscribe();
+  }, []);
 
   useEffect(() => {
     if (authLoading) return;
