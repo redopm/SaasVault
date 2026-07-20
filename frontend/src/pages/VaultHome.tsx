@@ -36,10 +36,10 @@ const tools = [
     title: 'SaaS Dashboard UI Kit',
     description: 'Premium Figma files & Tailwind components for SaaS dashboards.',
     icon: <Layout size={28} className="text-purple-400" />,
-    link: '#',
+    link: '/product/saas_dashboard_ui_kit',
     type: 'UI Kit',
     color: 'from-purple-400 to-pink-500',
-    isComingSoon: true,
+    isComingSoon: false,
     price: 999,
     productId: 'saas_dashboard_ui_kit'
   },
@@ -48,10 +48,10 @@ const tools = [
     title: 'Agency Onboarding Kit',
     description: 'Notion workspace duplicate for freelance and agency client onboarding.',
     icon: <Briefcase size={28} className="text-amber-400" />,
-    link: '#',
+    link: '/product/agency_onboarding_kit',
     type: 'Notion Kit',
     color: 'from-amber-400 to-orange-500',
-    isComingSoon: true,
+    isComingSoon: false,
     price: 999,
     productId: 'agency_onboarding_kit'
   },
@@ -60,10 +60,10 @@ const tools = [
     title: 'Technical Arch Kit',
     description: 'Instantly generate Mermaid.js system architecture diagrams from text.',
     icon: <Settings size={28} className="text-rose-400" />,
-    link: '#',
+    link: '/tool/arch-kit',
     type: 'AI Tool',
     color: 'from-rose-400 to-red-500',
-    isComingSoon: true
+    isComingSoon: false
   },
   {
     id: 6,
@@ -80,10 +80,10 @@ const tools = [
     title: 'SaaS UX/UI Conversion Audit Checklist',
     description: 'A high-value PDF and Notion Checklist to audit your landing page conversion rates.',
     icon: <CheckSquare size={28} className="text-green-400" />,
-    link: '#',
+    link: '/product/ux_audit_checklist',
     type: 'Notion Kit',
     color: 'from-green-400 to-emerald-500',
-    isComingSoon: true,
+    isComingSoon: false,
     price: 999,
     productId: 'ux_audit_checklist'
   },
@@ -102,12 +102,12 @@ const tools = [
     title: 'SaaS Landing Page & Social Media Kit',
     description: 'Premium Canva templates and Figma files for your startup branding.',
     icon: <MonitorSmartphone size={28} className="text-fuchsia-400" />,
-    link: '#',
+    link: '/product/landing_kit_saas',
     type: 'Design Kit',
     color: 'from-fuchsia-400 to-pink-500',
-    isComingSoon: true,
+    isComingSoon: false,
     price: 999,
-    productId: 'saas_landing_kit'
+    productId: 'landing_kit_saas'
   },
   {
     id: 10,
@@ -140,7 +140,7 @@ export default function VaultHome() {
   const rightColY = useTransform(scrollYProgress, [0, 1], [200, -200]);
 
   return (
-    <div ref={containerRef} className="bg-slate-950 text-white min-h-screen relative overflow-hidden font-sans">
+    <div ref={containerRef} className="relative min-h-[250vh] text-white font-sans selection:bg-teal-500/30">
       <Helmet>
         <title>SaaS Vault | Premium Digital Products & AI Tools for Founders</title>
         <meta name="description" content="Discover premium UI kits, pitch deck generators, and AI prompt vaults designed specifically for SaaS founders and indie hackers to scale faster." />

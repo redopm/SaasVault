@@ -1,6 +1,6 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, g
 from firebase_admin import firestore
-from routes.auth import require_auth
+from routes.auth import require_auth, _ADMIN_EMAILS
 
 user_bp = Blueprint('user', __name__)
 
@@ -8,7 +8,8 @@ user_bp = Blueprint('user', __name__)
 @require_auth
 def get_user_profile():
     try:
-        uid = request.user.get('uid')
+        uid = g.get('user_id')
+        user_email = g.get('user_email', '')
         if not uid:
             return jsonify({'success': False, 'error': 'Unauthorized'}), 401
             
@@ -16,13 +17,16 @@ def get_user_profile():
         user_ref = db.collection('users').document(uid)
         user_doc = user_ref.get()
         
+        is_admin = user_email.lower() in _ADMIN_EMAILS if user_email else False
+
         if not user_doc.exists:
             return jsonify({
                 'success': True,
                 'data': {
                     'vault_credits': 0,
-                    'name': request.user.get('name', ''),
-                    'email': request.user.get('email', '')
+                    'name': '',
+                    'email': user_email,
+                    'isAdmin': is_admin
                 }
             })
             
@@ -31,8 +35,9 @@ def get_user_profile():
             'success': True,
             'data': {
                 'vault_credits': user_data.get('vault_credits', 0),
-                'name': user_data.get('name') or request.user.get('name', ''),
-                'email': user_data.get('email') or request.user.get('email', '')
+                'name': user_data.get('name', ''),
+                'email': user_data.get('email') or user_email,
+                'isAdmin': is_admin
             }
         })
     except Exception as e:

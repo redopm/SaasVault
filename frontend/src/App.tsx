@@ -14,6 +14,7 @@ import UserProfile from './pages/UserProfile';
 import Terms from './pages/legal/Terms';
 import Privacy from './pages/legal/Privacy';
 import Refund from './pages/legal/Refund';
+import TechArchKit from './pages/tool/TechArchKit';
 import { usePageTracking } from './hooks/usePageTracking';
 import ProductHuntLaunch from './pages/ProductHuntLaunch';
 import PurchaseSuccess from './pages/PurchaseSuccess';
@@ -148,11 +149,12 @@ function TrackedRoutes() {
           <Route path="/terms" element={<Terms />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/refund" element={<Refund />} />
-          <Route path="/profile" element={<UserProfile />} />
+          <Route path="/user/profile" element={<UserProfile />} />
           <Route path="/vault" element={<VaultHome />} />
           <Route path="/prompt-vault" element={<PromptVault />} />
           <Route path="/market" element={<MarketHome />} />
-          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/product/:productId" element={<ProductDetail />} />
+          <Route path="/tool/arch-kit" element={<TechArchKit />} />
           <Route path="/ph" element={<ProductHuntLaunch />} />
           <Route path="/purchase-success" element={<PurchaseSuccess />} />
         </Routes>

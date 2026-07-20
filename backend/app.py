@@ -55,12 +55,14 @@ from routes.saas_market_routes import saas_market_bp
 from routes.prompt_vault_routes import prompt_vault_bp
 from routes.payment_routes import payment_bp
 from routes.user_routes import user_bp
+from routes.arch_kit_routes import arch_kit_bp
 
 app.register_blueprint(pitchking_bp, url_prefix='/api/pitchking')
 app.register_blueprint(saas_market_bp)
 app.register_blueprint(prompt_vault_bp)
 app.register_blueprint(payment_bp)
 app.register_blueprint(user_bp)
+app.register_blueprint(arch_kit_bp, url_prefix='/api/arch-kit')
 
 # ============= GLOBAL ERROR HANDLERS =============
 @app.errorhandler(404)
