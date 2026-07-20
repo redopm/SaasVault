@@ -26,7 +26,19 @@ export default function TechArchKit() {
   useEffect(() => {
     mermaid.initialize({
       startOnLoad: false,
-      theme: 'dark',
+      theme: 'base',
+      themeVariables: {
+        primaryColor: '#0f172a',
+        primaryTextColor: '#f8fafc',
+        primaryBorderColor: '#334155',
+        lineColor: '#64748b',
+        secondaryColor: '#1e293b',
+        tertiaryColor: '#1e293b'
+      },
+      flowchart: {
+        defaultRenderer: 'elk',
+        curve: 'stepAfter'
+      },
       securityLevel: 'loose',
       fontFamily: 'Inter, sans-serif'
     });
