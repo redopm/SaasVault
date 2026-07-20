@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
 import { Sparkles, Briefcase, Layout, FileText, Code, Settings, ChevronDown, ShoppingCart, Loader2, CheckSquare, Database, MonitorSmartphone } from 'lucide-react';
 import PricingSection from '../components/vault/PricingSection';
@@ -139,7 +140,13 @@ export default function VaultHome() {
   const rightColY = useTransform(scrollYProgress, [0, 1], [200, -200]);
 
   return (
-    <div ref={containerRef} className="relative min-h-[250vh] text-white font-sans selection:bg-teal-500/30">
+    <div ref={containerRef} className="bg-slate-950 text-white min-h-screen relative overflow-hidden font-sans">
+      <Helmet>
+        <title>SaaS Vault | Premium Digital Products & AI Tools for Founders</title>
+        <meta name="description" content="Discover premium UI kits, pitch deck generators, and AI prompt vaults designed specifically for SaaS founders and indie hackers to scale faster." />
+        <meta property="og:title" content="SaaS Vault | Premium Digital Products for Founders" />
+        <meta property="og:description" content="Discover premium UI kits, pitch deck generators, and AI prompt vaults designed specifically for SaaS founders." />
+      </Helmet>
       
       <VaultNavbar />
 

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { ShoppingCart, Loader2, CheckCircle2, Lock, ArrowRight, Layout, Briefcase, CheckSquare, Database, MonitorSmartphone, ShoppingBag, Store, Shield, RefreshCw, Download, Star, Cpu, BookOpen, Activity, Bitcoin, Smartphone } from 'lucide-react';
 import VaultNavbar from '../../components/vault/VaultNavbar';
@@ -293,6 +294,28 @@ export default function ProductDetail() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-white font-sans selection:bg-teal-500/30 pb-20">
+      <Helmet>
+        <title>{product.name} | SaaS Vault Market</title>
+        <meta name="description" content={product.description} />
+        <meta property="og:title" content={`${product.name} | SaaS Vault Market`} />
+        <meta property="og:description" content={product.description} />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org/",
+            "@type": "Product",
+            "name": product.name,
+            "description": product.description,
+            "offers": {
+              "@type": "Offer",
+              "url": `https://tools.ikkish.in/product/${product.id}`,
+              "priceCurrency": "INR",
+              "price": product.price_inr,
+              "availability": "https://schema.org/InStock"
+            }
+          })}
+        </script>
+      </Helmet>
+      
       <VaultNavbar />
       
       <div className="fixed inset-0 z-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-slate-950 to-slate-950"></div>

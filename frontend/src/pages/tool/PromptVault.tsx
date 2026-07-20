@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Search, Copy, CheckCircle2, Lock, Sparkles, Filter } from 'lucide-react';
@@ -97,6 +98,13 @@ export default function PromptVault() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-pink-100 font-inter text-slate-800">
+      <Helmet>
+        <title>AI Prompt Vault | Premium ChatGPT & Claude Prompts</title>
+        <meta name="description" content="Unlock advanced AI prompts for SaaS founders, marketers, and developers. Get better results from ChatGPT, Claude, and Midjourney." />
+        <meta property="og:title" content="AI Prompt Vault | Premium Prompts" />
+        <meta property="og:description" content="Unlock advanced AI prompts for SaaS founders, marketers, and developers." />
+      </Helmet>
+
       <VaultNavbar />
 
       <main className="max-w-6xl mx-auto px-6 py-24">

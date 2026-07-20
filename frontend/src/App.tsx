@@ -14,6 +14,7 @@ import UserProfile from './pages/UserProfile';
 import Terms from './pages/legal/Terms';
 import Privacy from './pages/legal/Privacy';
 import Refund from './pages/legal/Refund';
+import { usePageTracking } from './hooks/usePageTracking';
 import ProductHuntLaunch from './pages/ProductHuntLaunch';
 import PurchaseSuccess from './pages/PurchaseSuccess';
 
@@ -125,39 +126,47 @@ function PitchKingHome() {
   );
 }
 
+function TrackedRoutes() {
+  usePageTracking();
+  
+  return (
+    <div className="min-h-screen relative font-sans text-white overflow-x-hidden selection:bg-cyan-500/30 selection:text-cyan-50">
+      {/* Global Ocean Wave Background */}
+      <div className="fixed inset-0 z-0 bg-[#0B1121]">
+        <OceanWave />
+      </div>
+      
+      {/* Main Content Area */}
+      <div className="relative z-10 min-h-screen">
+        <Routes>
+          <Route path="/" element={<VaultHome />} />
+          <Route path="/pitchking" element={<PitchKingHome />} />
+          <Route path="/onboarding" element={<Onboarding />} />
+          <Route path="/generator" element={<Generator />} />
+          <Route path="/print/:jobId" element={<PrintView />} />
+          <Route path="/tool/saas-vault" element={<SaaSVault />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/refund" element={<Refund />} />
+          <Route path="/profile" element={<UserProfile />} />
+          <Route path="/vault" element={<VaultHome />} />
+          <Route path="/prompt-vault" element={<PromptVault />} />
+          <Route path="/market" element={<MarketHome />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/ph" element={<ProductHuntLaunch />} />
+          <Route path="/purchase-success" element={<PurchaseSuccess />} />
+        </Routes>
+      </div>
+    </div>
+  );
+}
+
 function App() {
   return (
     <HelmetProvider>
       <Router>
-        <div className="min-h-screen relative font-sans text-white overflow-x-hidden selection:bg-cyan-500/30 selection:text-cyan-50">
-          {/* Global Ocean Wave Background */}
-          <div className="fixed inset-0 z-0 bg-[#0B1121]">
-            <OceanWave />
-          </div>
-          
-          {/* Main Content Area */}
-          <div className="relative z-10 min-h-screen">
-            <Routes>
-              <Route path="/" element={<VaultHome />} />
-              <Route path="/pitchking" element={<PitchKingHome />} />
-              <Route path="/onboarding" element={<Onboarding />} />
-              <Route path="/generator" element={<Generator />} />
-              <Route path="/print/:jobId" element={<PrintView />} />
-              <Route path="/tool/saas-vault" element={<SaaSVault />} />
-              <Route path="/terms" element={<Terms />} />
-              <Route path="/privacy" element={<Privacy />} />
-              <Route path="/refund" element={<Refund />} />
-              <Route path="/profile" element={<UserProfile />} />
-              <Route path="/vault" element={<VaultHome />} />
-              <Route path="/prompt-vault" element={<PromptVault />} />
-              <Route path="/market" element={<MarketHome />} />
-              <Route path="/product/:id" element={<ProductDetail />} />
-              <Route path="/ph" element={<ProductHuntLaunch />} />
-              <Route path="/purchase-success" element={<PurchaseSuccess />} />
-            </Routes>
-          </div>
-        </div>
-        <Toaster 
+        <TrackedRoutes />
+        <Toaster  
           position="top-center" 
           toastOptions={{ 
             style: { 

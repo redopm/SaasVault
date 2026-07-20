@@ -1,3 +1,6 @@
+import { logEvent } from 'firebase/analytics';
+import { analytics } from '../firebase';
+
 export const processMarketPayment = async (productId: string, token: string): Promise<{success: boolean, link?: string, error?: string}> => {
   try {
     const apiUrl = import.meta.env.PROD ? '' : 'http://localhost:10001';
@@ -43,6 +46,19 @@ export const processMarketPayment = async (productId: string, token: string): Pr
           });
           const verifyData = await verifyRes.json();
           if (verifyData.success) {
+            if (analytics) {
+              logEvent(analytics, 'purchase', {
+                transaction_id: response.razorpay_payment_id,
+                value: orderData.amount / 100,
+                currency: "INR",
+                items: [{
+                  item_id: productId,
+                  item_name: orderData.product_name,
+                  price: orderData.amount / 100,
+                  quantity: 1
+                }]
+              });
+            }
             resolve({ success: true, link: verifyData.access_link });
           } else {
             console.error("Signature verification failed");

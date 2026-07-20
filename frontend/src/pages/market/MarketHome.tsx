@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ShoppingBag, Loader2, Layout, Briefcase, CheckSquare, Database, MonitorSmartphone, Store, Star, Zap, ArrowRight, Cpu, BookOpen, Activity, Bitcoin, Smartphone } from 'lucide-react';
@@ -138,6 +139,12 @@ export default function MarketHome() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-white font-sans selection:bg-teal-500/30 pb-24">
+      <Helmet>
+        <title>SaaS Market | Buy Premium UI Kits & Code Templates</title>
+        <meta name="description" content="A curated marketplace of premium UI kits, landing page templates, and boilerplate code for SaaS founders." />
+        <meta property="og:title" content="SaaS Market | Premium UI Kits & Templates" />
+        <meta property="og:description" content="A curated marketplace of premium UI kits and landing page templates for SaaS founders." />
+      </Helmet>
       <VaultNavbar />
 
       {/* Ambient Background */}
